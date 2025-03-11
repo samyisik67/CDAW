@@ -26,7 +26,7 @@
         }
     '</table>';        
     
-    echo '<form method="POST" action="tes-PDO-post.php">';
+    echo '<form method="POST" action="test-PDO-post.php">';
     echo '<label for="name">Votre Nom :</label>';
     echo '<input type="text" id="name" name="name" required>';
     echo '<br>';
