@@ -2,6 +2,16 @@
     // initialise une variable $pdo connecté à la base locale
 	require_once("initPDO.php");    // cf. doc / cours
 
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+
+        $stmt = $pdo->prepare("INSERT INTO users  VALUES (0, :name, :email)");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+    };  
+
 	$request = $pdo->prepare("SELECT * FROM users");
     $request->execute();
     // à vous de compléter...
@@ -16,11 +26,11 @@
             </tr>';
         while(!empty($data)){
         echo '<tr> 
-                <li>
+
                 <td>' .$data->id. '</td>
                 <td>' .$data->name.'</td>
                 <td>'.$data->email.'</td>
-                </li>
+            
             </tr>';
             $data = $request->fetch(PDO::FETCH_OBJ);
         }
@@ -37,15 +47,7 @@
     echo '<br>';
     echo '</form>';
     
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $name = htmlspecialchars($_POST['name']);
-        $email = htmlspecialchars($_POST['email']);
-
-        $stmt = $pdo->prepare("INSERT INTO users  VALUES (0, :name, :email)");
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-    };  
+    
     /*** close the database connection ***/
     $pdo = null;
 ?>

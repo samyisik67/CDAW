@@ -64,8 +64,6 @@ class User{
 
 
 }
-?>
 
-<?php
+
 	User::showAllUsersAsTable();
-?>
