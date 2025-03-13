@@ -36,8 +36,11 @@ function getRoute($url){
 }
 
 $uri= $_SERVER['REQUEST_URI'];
+
 // $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = parse_url($uri)['query'];
+$uri = parse_url($uri);
+$uri = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
+
 $route = getRoute($uri);
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
