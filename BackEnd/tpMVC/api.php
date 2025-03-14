@@ -15,6 +15,7 @@
 
 	// Reify the current request
 	$request = Request::getCurrentRequest();
+   
 	Response::interceptEchos();
 
 	try {
