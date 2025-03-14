@@ -45,7 +45,7 @@ $route = getRoute($uri);
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
-$controllerName = $route['controller'];
+$controllerName = $route['controller'] ?: 'users';
 
 
 switch($controllerName) {
@@ -59,4 +59,6 @@ switch($controllerName) {
         exit();
 }
 
-$controller->processRequest();
+$result = $controller->processRequest();
+
+echo $result;
